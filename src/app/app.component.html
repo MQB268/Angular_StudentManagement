@@ -1,0 +1,66 @@
+<!-- Toolbar -->
+<mat-toolbar color="primary" class="nav-height">
+  <mat-toolbar-row>
+    <button mat-icon-button>
+      <mat-icon (click)="openLeftSide()">menu</mat-icon>
+    </button>
+    <h1>Student Management</h1>
+    <span class="menu-spacer" style="width: 100px"></span>
+    <div>
+      <a mat-button [routerLink]="['/home']" routerLinkActive="active-link">
+        <mat-icon mat-list-icon>home</mat-icon> Home
+      </a>
+      <a mat-button [routerLink]="['/students']" routerLinkActive="active-link">
+        <mat-icon mat-list-icon>person</mat-icon>
+        <span
+          *ngIf="totalStudents > 0"
+          matBadge="{{ totalStudents }}"
+          matBadgeColor="warn"
+          >Students &nbsp;&nbsp;</span
+        >
+      </a>
+      <a mat-button [routerLink]="['/about']" routerLinkActive="active-link">
+        <mat-icon mat-list-icon>filter_none</mat-icon> About
+      </a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<!-- End of Toolbar -->
+
+<!-- Sidenav -->
+<mat-sidenav-container>
+  <mat-sidenav #sidenav (closed)="closeLeftSide()">
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['/home']">
+        <mat-icon mat-list-icon>home</mat-icon> Home
+      </a>
+      <a mat-list-item [routerLink]="['/students']">
+        <mat-icon>person</mat-icon>&nbsp; Students
+      </a>
+      <a mat-list-item [routerLink]="['/about']">
+        <mat-icon>filter_none</mat-icon>&nbsp; About
+      </a>
+      <a mat-list-item (click)="sidenav.toggle()" mat-list-item>
+        <mat-icon>close</mat-icon>&nbsp; Close
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div
+      style="
+        height: 90vh;
+        margin-top: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+      "
+      [ngClass]="{
+        'content-move-left': !isOpened,
+        'content-move-right': isOpened
+      }"
+    >
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<!-- End of Sidenav -->

@@ -1,0 +1,44 @@
+<div>
+  <button mat-raised-button color="primary" (click)="addStudent()">
+    <mat-icon>add_box</mat-icon>
+    Add Student
+  </button>
+  <table id="customers">
+    <tr>
+      <th>Action</th>
+      <th>ID</th>
+      <th>Code</th>
+      <th>Gender</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Picture</th>
+    </tr>
+    <tr *ngFor="let student of students">
+      <td>
+        <mat-icon
+          style="cursor: pointer"
+          title="click to delete"
+          (click)="deleteStudent(student['id'])"
+          >delete</mat-icon
+        >
+        &nbsp;|&nbsp;
+        <mat-icon
+          style="cursor: pointer"
+          title="click to edit"
+          (click)="editStudent(student['id'])"
+          >create</mat-icon
+        >
+      </td>
+      <td>{{ student["id"] }}</td>
+      <td>{{ student["code"] }}</td>
+      <td>{{ student["gender"] }}</td>
+      <td>{{ student["firstName"] }}</td>
+      <td>{{ student["lastName"] }}</td>
+      <td>{{ student["email"] }}</td>
+      <td>{{ student["phone"] }}</td>
+      <td>{{ student["picture"] }}</td>
+    </tr>
+  </table>
+</div>
